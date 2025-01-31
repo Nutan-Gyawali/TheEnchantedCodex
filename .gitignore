@@ -1,0 +1,38 @@
+.# Ignore the uploads folder in all directories
+**/uploads/
+**/images/
+
+# Ignore environment configuration files
+.env
+.env.local
+.env.*.local
+
+# Ignore compiled files
+*.log
+*.cache
+*.tmp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore vendor folder (if using Composer)
+vendor/
+
+# Ignore node_modules folder (if using Node.js for frontend)
+node_modules/
+
+# Ignore other sensitive files
+*.bak
+*.sql
+*.sqlite
+*.db
+
+# Ignore build artifacts
+/build/
+dist/

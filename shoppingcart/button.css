@@ -1,0 +1,38 @@
+.submit-btn {
+    display: inline-block;
+    background-color: #3d28a7;
+    /* Green background */
+    color: white;
+    /* White text */
+    font-size: 1rem;
+    /* Font size */
+    padding: 10px 20px;
+    /* Padding for the button */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    text-align: center;
+    /* Center text */
+    text-decoration: none;
+    /* Remove underline */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s;
+    /* Smooth transitions */
+    margin-left: 40px;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+    /* Darker green on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+}
+
+.submit-btn:active {
+    background-color: #1e7e34;
+    /* Even darker green when clicked */
+    transform: scale(1);
+    /* Reset scale when clicked */
+}
