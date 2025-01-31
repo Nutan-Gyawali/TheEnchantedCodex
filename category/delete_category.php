@@ -62,7 +62,7 @@ try {
 }
 
 // Redirect back to category list
-header("Location: view_categories.php");
+header("Location: ../AdminPanel/index.php");
 exit;
 
 $conn->close();

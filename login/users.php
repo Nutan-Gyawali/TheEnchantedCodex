@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 $conn->close();
 
                 // Redirect to welcome page
-                header("Location: welcome.php");
+                header("Location:../Landing/index.php ");
                 exit();
             } else {
                 echo "<p>Error: " . $stmt->error . "</p>";

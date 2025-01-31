@@ -159,18 +159,6 @@ $conn->close();
     </style>
 </head>
 
-<body>
-    <form method="POST" action="view_categories.php">
-        <input type="submit" name="viewCat" value="View All Categories">
-    </form>
-    <form method="POST" action="../adminpanel.php">
-        <input type="submit" name="welcome" value="Go to Home Page">
-    </form>
 
-
-
-    <button id="category" onclick="location.href='../product/product.php'">Go to Products Page</button>
-
-</body>
 
 </html>
