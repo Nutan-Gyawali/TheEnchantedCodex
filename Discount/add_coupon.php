@@ -23,6 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_until = !empty($_POST['valid_until']) ? $_POST['valid_until'] : null;
     $status = $_POST['status'];
 
+    // Convert valid_until to a timestamp and check if it's expired
+    if (!empty($valid_until) && strtotime($valid_until) < time()) {
+        $status = 'expired'; // If expiry date is in the past, set status to expired
+    }
+
     try {
         // Check for existing coupon code
         $check_stmt = $conn->prepare("SELECT code FROM discount_coupons WHERE code = ?");

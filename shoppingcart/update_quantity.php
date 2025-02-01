@@ -39,7 +39,9 @@ try {
                 ':product_id' => $product_id
             ]);
 
-            echo json_encode(["success" => "Quantity updated", "new_quantity" => $new_quantity]);
+            // Redirect to viewcart.php after successful update
+            header("Location: viewcart.php");
+            exit();
         } else {
             echo json_encode(["error" => "Product not found in cart"]);
         }

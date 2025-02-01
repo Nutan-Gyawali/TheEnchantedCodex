@@ -21,6 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_until = !empty($_POST['valid_until']) ? $_POST['valid_until'] : null;
     $status = $_POST['status'];
 
+    // Check if the coupon should be marked as expired
+    if (!empty($valid_until) && strtotime($valid_until) < time()) {
+        $status = 'expired'; // If expiry date is in the past, set status to expired
+    }
+
     // Update the coupon
     $update_sql = "UPDATE discount_coupons SET 
                    code = ?, discount_type = ?, discount_value = ?, min_order_amount = ?, 

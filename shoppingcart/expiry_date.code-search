@@ -1,0 +1,9 @@
+# Query: expiry_date
+# ContextLines: 1
+
+1 result - 1 file
+
+shoppingcart\apply_coupon.php:
+  26      // Check if the coupon is valid and not expired
+  27:     $query = "SELECT * FROM discount_coupons WHERE code = :code AND valid_until >= NOW() AND usage_limit > 0";
+  28      $stmt = $conn->prepare($query);
