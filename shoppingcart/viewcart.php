@@ -110,8 +110,6 @@ try {
                         <h4>Order Summary</h4>
                         <p>Subtotal: <span id="subtotal">0</span></p>
 
-                        <!-- Coupon/Voucher code input -->
-                        <!-- Coupon/Voucher code input -->
                         <div class="coupon-section">
                             <label for="coupon-code">Coupon Code</label>
                             <input type="text" id="coupon-code" class="form-control" placeholder="Enter coupon code">
@@ -119,14 +117,11 @@ try {
                             <p id="coupon-message" class="mt-2"></p>
                         </div>
 
-
-                        <!-- Shipping fee display -->
                         <p>Shipping Fee: Rs. <span id="shipping-fee">50</span></p>
 
-                        <!-- Total display -->
                         <p><strong>Total: Rs. <span id="total">0</span></strong></p>
 
-                        <button class="btn custom-btn btn-primary w-100" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                        <button class="btn custom-btn btn-primary w-100" onclick="location.href='checkout.php'">Proceed to Checkout</button>
                     </div>
                 </div>
 
