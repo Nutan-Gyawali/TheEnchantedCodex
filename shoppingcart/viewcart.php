@@ -121,7 +121,10 @@ try {
 
                         <p><strong>Total: Rs. <span id="total">0</span></strong></p>
 
-                        <button class="btn custom-btn btn-primary w-100" onclick="location.href='checkout.php'">Proceed to Checkout</button>
+                        <form action="checkout.php" method="POST" id="checkout-form" onsubmit="return prepareCheckout()">
+                            <input type="hidden" name="selected_items" id="selected-items-input">
+                            <button type="submit" class="btn custom-btn btn-primary w-100">Proceed to Checkout</button>
+                        </form>
                     </div>
                 </div>
 
@@ -137,6 +140,7 @@ try {
                     const shippingFeeElement = document.getElementById('shipping-fee');
                     const couponMessageElement = document.getElementById('coupon-message');
                     const productCheckboxes = document.querySelectorAll('.product-select');
+                    const applyButton = document.querySelector('.btn-secondary');
 
                     let shippingFee = parseFloat(shippingFeeElement.innerText);
                     let appliedDiscount = 0;
@@ -146,30 +150,25 @@ try {
                         productCheckboxes.forEach(checkbox => {
                             if (checkbox.checked) {
                                 let productCard = checkbox.closest('.product-card');
-
-                                // Get price from the paragraph element directly inside .product-card
                                 let priceText = productCard.querySelector('p').innerText.replace('Rs. ', '').replace(',', '');
                                 let quantityText = productCard.querySelector('.quantity-value').innerText;
 
                                 let price = parseFloat(priceText);
                                 let quantity = parseInt(quantityText);
 
-                                subtotal += price * quantity; // Correct subtotal calculation
+                                subtotal += price * quantity;
                             }
                         });
 
                         let total = subtotal - appliedDiscount + shippingFee;
-                        subtotalElement.innerText = `Rs. ${subtotal.toFixed(2)}`; // Format display
+                        subtotalElement.innerText = `Rs. ${subtotal.toFixed(2)}`;
                         totalElement.innerText = `Rs. ${total.toFixed(2)}`;
+                        return subtotal;
                     }
-
-                    productCheckboxes.forEach(checkbox => {
-                        checkbox.addEventListener('change', calculateSubtotal);
-                    });
 
                     function applyCoupon() {
                         const couponCode = document.getElementById('coupon-code').value.trim();
-                        let orderAmount = parseFloat(subtotalElement.innerText.replace('Rs. ', '').replace(',', ''));
+                        let orderAmount = calculateSubtotal();
 
                         if (!couponCode) {
                             couponMessageElement.innerText = 'Please enter a coupon code.';
@@ -188,11 +187,9 @@ try {
                             })
                             .then(response => response.json())
                             .then(data => {
-                                console.log(data); // Debugging: Check actual response
-
                                 if (data.success && data.discount !== undefined) {
-                                    appliedDiscount = parseFloat(data.discount) || 0; // Ensure valid number
-                                    calculateSubtotal(); // Recalculate total after applying discount
+                                    appliedDiscount = parseFloat(data.discount) || 0;
+                                    calculateSubtotal();
                                     couponMessageElement.innerText = `Coupon applied! Discount: Rs. ${appliedDiscount.toFixed(2)}`;
                                 } else {
                                     couponMessageElement.innerText = data.message || 'Invalid coupon code.';
@@ -204,10 +201,40 @@ try {
                             });
                     }
 
+                    function prepareCheckout() {
+                        const selectedCheckboxes = document.querySelectorAll('.product-select:checked');
+                        if (selectedCheckboxes.length === 0) {
+                            alert('Please select at least one item to checkout.');
+                            return false;
+                        }
 
-                    document.querySelector('.btn-secondary').addEventListener('click', applyCoupon);
+                        const selectedItems = Array.from(selectedCheckboxes).map(cb => cb.value);
+                        const selectedItemsString = selectedItems.join(',');
+                        document.getElementById('selected-items-input').value = selectedItemsString;
 
-                    // Call calculateSubtotal initially to set correct values
+                        // Add this debug line
+                        console.log('Selected items:', selectedItemsString);
+
+                        return true;
+                    }
+                    // Add event listeners
+                    productCheckboxes.forEach(checkbox => {
+                        checkbox.addEventListener('change', calculateSubtotal);
+                    });
+
+                    applyButton.addEventListener('click', applyCoupon);
+
+                    // Add event listener to checkout form
+                    const checkoutForm = document.getElementById('checkout-form');
+                    if (checkoutForm) {
+                        checkoutForm.onsubmit = (e) => {
+                            if (!prepareCheckout()) {
+                                e.preventDefault();
+                            }
+                        };
+                    }
+
+                    // Initial calculation
                     calculateSubtotal();
                 });
             </script>

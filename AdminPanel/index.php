@@ -5,63 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Page Layout</title>
-
     <link rel="stylesheet" href="style.css">
-    <script src="../category/category_management.js"></script>
-
-    <style>
-
-    </style>
 </head>
 
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-brand">
+                <img src="../Landing/logo.png" alt="Brand Logo" class="logo">
+                <h1 class="brand-name">The Enchanted Codex</h1>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
     <div class="sidebar">
-        <button class="nav-button active" data-page="categories">Categories</button>
-        <button class="nav-button" data-page="products">Products</button>
-        <button class="nav-button" data-page="discounts">Discounts</button>
+        <button class="nav-button active" data-page="categories.php">Categories</button>
+        <button class="nav-button" data-page="products.php">Products</button>
+        <button class="nav-button" data-page="discounts.php">Discounts</button>
     </div>
 
-    <div class="main-content">
-        <div id="categories" class="page active">
-            <h1>Category Management</h1>
-            <div id="categoryCount" class="category-count"></div>
-            <a href="../category/addcategory.php" class="add-category">Add New Category</a>
-            <div id="categoryTree"></div>
-        </div>
-
-        <div id="products" class="page">
-            <h2>Products</h2>
-            <!-- Your products content -->
-        </div>
-
-        <div id="discounts" class="page">
-            <h2>Discounts</h2>
-            <!-- Your discounts content -->
-        </div>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Default content (Categories) is loaded here -->
     </div>
 
     <script>
-        // Navigation code
-        const navButtons = document.querySelectorAll('.nav-button');
-        const pages = document.querySelectorAll('.page');
+        document.addEventListener("DOMContentLoaded", function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const mainContent = document.getElementById('mainContent');
 
-        navButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                pages.forEach(page => page.classList.remove('active'));
+            function loadPage(page) {
+                fetch(page)
+                    .then(response => response.text())
+                    .then(data => {
+                        mainContent.innerHTML = data;
+                    })
+                    .catch(error => console.error('Error loading the page:', error));
+            }
 
-                button.classList.add('active');
-                const pageId = button.dataset.page;
-                document.getElementById(pageId).classList.add('active');
+            // Load default page (Categories)
+            loadPage('categories.php');
 
-                if (pageId === 'categories') {
-                    loadCategories();
-                }
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Get the page from data-page attribute
+                    const page = button.getAttribute('data-page');
+                    loadPage(page);
+                });
             });
         });
-
-        // Load categories on initial page load
-        loadCategories();
     </script>
 </body>
 

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $role;
 
             if ($role === 'admin') {
-                header("Location: ../Discount/discount.php"); // Redirect admin to discount page
+                header("Location: index.php"); // Redirect admin to discount page
                 exit();
             } else {
                 echo "<script>alert('Access denied! Only admins can log in.'); window.history.back();</script>";
