@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Page Layout</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 
 <body>
@@ -24,6 +24,7 @@
         <button class="nav-button active" data-page="categories.php">Categories</button>
         <button class="nav-button" data-page="products.php">Products</button>
         <button class="nav-button" data-page="discounts.php">Discounts</button>
+        <button class="nav-button" data-page="orders.php">Orders</button>
     </div>
 
     <!-- Main Content -->
@@ -46,7 +47,7 @@
             }
 
             // Load default page (Categories)
-            loadPage('categories.php');
+            loadPage('../category/view_categories.php');
 
             navButtons.forEach(button => {
                 button.addEventListener('click', () => {

@@ -1,0 +1,150 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f5ff;
+    color: #333;
+    padding: 20px;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2em;
+    color: #6b2fb3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Category Count */
+.category-count {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #ff6b00;
+    text-align: center;
+}
+
+/* Add Category Link */
+.add-category {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6b00;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.add-category:hover {
+    background-color: #ff8c42;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.3);
+}
+
+/* Category Tree Styles */
+.category-tree {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.category-tree li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e0d5f5;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.category-tree li:hover {
+    background-color: #fef4eb;
+    border-color: #ffb88c;
+}
+
+.category-tree li a {
+    text-decoration: none;
+    color: #6b2fb3;
+    margin-left: 10px;
+}
+
+.category-tree li a:hover {
+    color: #ff6b00;
+    text-decoration: underline;
+}
+
+.category-tree li .btn-edit {
+    color: #8a4fff;
+}
+
+.category-tree li .btn-delete {
+    color: #ff6b00;
+}
+
+/* Indentation based on level */
+.category-tree li ul {
+    margin-top: 10px;
+}
+
+.category-tree li ul li {
+    margin-left: 20px;
+}
+
+/* Form Styling */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #6b2fb3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #8a4fff;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(107, 47, 179, 0.3);
+}
+
+form input[type="submit"]:active {
+    background-color: #5a2896;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .add-category {
+        width: 100%;
+        text-align: center;
+    }
+
+    .category-tree li {
+        font-size: 1em;
+    }
+
+    form input[type="submit"] {
+        width: 100%;
+        font-size: 1em;
+    }
+}

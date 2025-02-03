@@ -10,7 +10,32 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Handle category addition
+if (isset($_POST['add_category'])) {
+    $category_name = trim($_POST['category_name']);
+    $parent_id = empty($_POST['parent_id']) ? NULL : $_POST['parent_id'];
 
+    // Check for duplicate
+    $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM categories WHERE category_name = ? AND parent_id <=> ?");
+    $stmt->bind_param("si", $category_name, $parent_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row['count'] > 0) {
+        $_SESSION['message'] = "Error: Category already exists!";
+    } else {
+        $stmt = $conn->prepare("INSERT INTO categories (category_name, parent_id) VALUES (?, ?)");
+        $stmt->bind_param("si", $category_name, $parent_id);
+        if ($stmt->execute()) {
+            $_SESSION['message'] = "Category added successfully!";
+        } else {
+            $_SESSION['message'] = "Error adding category!";
+        }
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 
 function getCategoryTree($conn, $parentId = null)
 {
@@ -70,7 +95,7 @@ $categories = getCategoryTree($conn);
     ?>
 
     <div class="dropdown-container">
-        <button class="main-dropdown">Categories ▼</button>
+        <button class="main-dropdown">Add New Categories ▼</button>
         <div class="dropdown-menu" id="mainMenu">
             <div class="dropdown-item">
                 <span>Add Top Level Category</span>
@@ -159,6 +184,16 @@ $conn->close();
     </style>
 </head>
 
+<body>
+    <form method="POST" action="../AdminPanel/index.php">
+        <input type="submit" name="viewCat" value="Go Back To Home">
+    </form>
 
+
+
+
+
+
+</body>
 
 </html>
