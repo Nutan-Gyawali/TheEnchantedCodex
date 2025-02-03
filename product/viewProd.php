@@ -5,27 +5,37 @@ $username = "root";
 $password = "";
 $dbname = "ecommerce";
 
-// Handle Delete Request
-if (isset($_POST['delete_product']) && isset($_POST['product_id'])) {
+// Handle product deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_product']) && isset($_POST['product_id'])) {
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
-        $stmt->execute([$_POST['product_id']]);
+        $product_id = $_POST['product_id'];
 
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
+        // Prepare and execute delete statement
+        $sql = "DELETE FROM products WHERE id = :product_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Return JSON response
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true]);
+        exit;
     } catch (PDOException $e) {
-        echo "Delete failed: " . $e->getMessage();
+        // Return error response
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        exit;
     }
 }
 
+// Fetch products
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Query to join products and categories tables
     $sql = "SELECT p.*, c.category_name 
             FROM products p 
             LEFT JOIN categories c ON p.category_id = c.id 
@@ -34,28 +44,32 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo '<div class="error-message">Connection failed: ' . htmlspecialchars($e->getMessage()) . '</div>';
+    exit;
+}
+
+$conn = null;
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Listing</title>
-        <link rel="stylesheet" href="viewprod.css">
+<head>
+    <link rel="stylesheet" href="../product/viewprod.css">
+</head>
+<div class="products-container">
+    <h1>All Products</h1>
+    <div class="product-controls">
+        <button id="addProduct" class="action-button">Add Product</button>
         <style>
 
         </style>
-    </head>
+    </div>
 
-    <body>
-        <h1>All Products</h1>
-        <div class="product-grid">
+    <div class="product-grid">
+        <?php if (!empty($products)): ?>
             <?php foreach ($products as $product): ?>
-                <div class="product-card">
+                <div class="product-card" data-product-id="<?php echo $product['id']; ?>">
                     <?php if ($product['image_path']): ?>
-                        <img src="<?php echo htmlspecialchars($product['image_path']); ?>"
+                        <img src="<?php echo htmlspecialchars('../product/uploads/' . basename($product['image_path'])); ?>"
                             alt="<?php echo htmlspecialchars($product['name']); ?>"
                             class="product-image">
                     <?php endif; ?>
@@ -65,7 +79,7 @@ try {
                     <p>Price: NRs.<?php echo number_format($product['price'], 2); ?></p>
                     <p><?php echo htmlspecialchars($product['description']); ?></p>
 
-                    <p class="<?php echo $product['quantity'] < 1 ? 'out-of-stock' : ''; ?>">
+                    <p class="stock-status <?php echo $product['quantity'] < 1 ? 'out-of-stock' : 'in-stock'; ?>">
                         <?php if ($product['quantity'] < 1): ?>
                             Out of Stock
                         <?php else: ?>
@@ -74,25 +88,48 @@ try {
                     </p>
 
                     <div class="action-buttons">
-                        <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="edit-btn">Edit</a>
-                        <form method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
-                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                            <button type="submit" name="delete_product" class="delete-btn">Delete</button>
-                        </form>
+                        <button class="edit-btn" onclick="editProduct(<?php echo $product['id']; ?>)">Edit</button>
+                        <button class="delete-btn" onclick="deleteProduct(<?php echo $product['id']; ?>)">Delete</button>
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-        <button id="product" onclick="location.href='product.php'">Add Product</button>
-        <button id="category" onclick="location.href='../category/category.php'">Go to Categories Page</button>
-    </body>
+        <?php else: ?>
+            <div class="no-products-message">No products available.</div>
+        <?php endif; ?>
+    </div>
+</div>
 
-    </html>
-
-<?php
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-$conn = null;
-?>
+<script>
+    function deleteProduct(id) {
+        if (confirm('Are you sure you want to delete this product?')) {
+            fetch('../product/viewProd.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `delete_product=1&product_id=${id}`
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const productCard = document.querySelector(`[data-product-id="${id}"]`);
+                        if (productCard) {
+                            productCard.remove();
+                        }
+                        alert('Product deleted successfully');
+                    } else {
+                        throw new Error(data.error || 'Error deleting product');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error deleting product: ' + error.message);
+                });
+        }
+    }
+</script>

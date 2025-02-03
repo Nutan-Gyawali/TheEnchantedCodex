@@ -161,7 +161,7 @@ $categories = getCategoriesForDropdown($conn);
             </div>
 
             <button type="submit" name="add_product" class="submit-btn">Add Product</button>
-            <button onclick="location.href='viewProd.php'" class="submit-btn">View all Products</button>
+            <button onclick="goBackOrRedirect()" class="submit-btn">Go Back</button>
         </form>
     </div>
 
@@ -175,6 +175,14 @@ $categories = getCategoriesForDropdown($conn);
                     preview.style.display = 'block';
                 }
                 reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function goBackOrRedirect() {
+            if (document.referrer) {
+                window.location.href = document.referrer; // Redirect to the previous page
+            } else {
+                window.location.href = '../AdminPanel/index.php'; // Fallback if no referrer
             }
         }
     </script>

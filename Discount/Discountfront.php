@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Discount Coupon</title>
-    <link rel="stylesheet" href="discount.css">
+    <link rel="stylesheet" href="../Discount/discount.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             ?>
         <?php endif; ?>
 
-        <form class="coupon-form" method="POST" action="add_coupon.php">
+        <form class="coupon-form" method="POST" action="../Discount/add_coupon.php">
             <div class="form-group">
                 <label>Coupon Code:</label>
                 <input type="text" name="code" required>
@@ -78,7 +78,11 @@
             </div>
 
             <button type="submit">Add Coupon</button>
+
         </form>
+
+        <button type="button" onclick="window.location.href='../AdminPanel/index.php'">Go Back</button>
+
     </div>
 </body>
 

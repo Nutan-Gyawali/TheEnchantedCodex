@@ -74,35 +74,44 @@
         <h2>Featured Magical Items</h2>
         <div class="products-grid">
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300" alt="Magical Item 1">
+                <img src="../books.jpeg" alt="Magical Item 1">
                 <div class="product-info">
                     <h3>Books</h3>
                     <p>Rare books you will not find elsewhere.</p>
                     <div style="margin-top: 1rem;">
 
-                        <button class="add-to-cart">Explore</button>
+                        <button class="explore-btn" onclick="location.href='explore.php'">
+                            Explore
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="product-card">
-                <img src="https://via.placeholder.com/400x300" alt="Magical Item 2">
+                <img src="../journal.jpeg" alt="Magical Item 2">
                 <div class="product-info">
                     <h3>Book Journals</h3>
                     <p>Keep track of all the books you've read</p>
                     <div style="margin-top: 1rem;">
 
-                        <button class="add-to-cart">Explore</button>
+                        <button class="explore-btn" onclick="location.href='explore.php'">
+                            Explore
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/400x300" alt="Magical Item 3">
+            <div class=" product-card">
+                <img src="../bookmarks.webp" alt="Magical Item 3">
                 <div class="product-info">
                     <h3>Bookmarks</h3>
                     <p>Find Prettiest Bookmarks</p>
                     <div style="margin-top: 1rem;">
 
-                        <button class="add-to-cart">Explore</button>
+                        <button class="explore-btn" onclick="location.href='explore.php'">
+                            Explore
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>

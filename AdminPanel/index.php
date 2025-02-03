@@ -21,10 +21,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <button class="nav-button active" data-page="categories.php">Categories</button>
-        <button class="nav-button" data-page="products.php">Products</button>
-        <button class="nav-button" data-page="discounts.php">Discounts</button>
-        <button class="nav-button" data-page="orders.php">Orders</button>
+        <button class="nav-button active" data-page="../category/view_categories.php">Categories</button>
+        <button class="nav-button" data-page="../product/viewProd.php">Products</button>
+        <button class="nav-button" data-page="../Discount/viewcoupon.php">Discounts</button>
+        <button class="nav-button" data-page="../orders/orderdisplay.php">Orders</button>
     </div>
 
     <!-- Main Content -->
@@ -37,11 +37,25 @@
             const navButtons = document.querySelectorAll('.nav-button');
             const mainContent = document.getElementById('mainContent');
 
+            function initializeProductPage() {
+                // Initialize Add Product button
+                const addProductBtn = document.getElementById('addProduct');
+                if (addProductBtn) {
+                    addProductBtn.addEventListener('click', function() {
+                        window.location.href = '../product/product.php';
+                    });
+                }
+            }
+
             function loadPage(page) {
                 fetch(page)
                     .then(response => response.text())
                     .then(data => {
                         mainContent.innerHTML = data;
+                        // Initialize page-specific functionality
+                        if (page.includes('viewProd.php')) {
+                            initializeProductPage();
+                        }
                     })
                     .catch(error => console.error('Error loading the page:', error));
             }
@@ -60,6 +74,35 @@
                     loadPage(page);
                 });
             });
+
+            // Add global functions for product actions
+            window.editProduct = function(id) {
+                window.location.href = `../product/edit_product.php?id=${id}`;
+            }
+
+            window.deleteProduct = function(id) {
+                if (confirm('Are you sure you want to delete this product?')) {
+                    fetch('../product/viewProd.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: `delete_product=1&product_id=${id}`
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                document.querySelector(`[data-product-id="${id}"]`).remove();
+                            } else {
+                                alert('Error deleting product');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error deleting product');
+                        });
+                }
+            }
         });
     </script>
 </body>

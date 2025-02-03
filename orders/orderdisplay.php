@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['or
     $update_stmt = $conn->prepare($update_sql);
     $update_stmt->execute([$order_status, $order_id]);
 
-    echo "<script>alert('Order status updated successfully.'); window.location.href='orderdisplay.php';</script>";
+    echo "<script>alert('Order status updated successfully.'); window.location.href='../orders/orderdisplay.php';</script>";
     exit();
 }
 ?>
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['or
 
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg">
+    <!-- <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-book-open logo-icon"></i>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['or
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Main Content -->
     <div class="container main-content">
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['order_id'], $_POST['or
                                     </td>
                                     <td><?php echo htmlspecialchars($order['created_at']); ?></td>
                                     <td>
-                                        <a href="order_details.php?order_id=<?php echo htmlspecialchars($order['id']); ?>" class="btn btn-view">
+                                        <a href="../orders/order_details.php?order_id=<?php echo htmlspecialchars($order['id']); ?>" class="btn btn-view">
                                             <i class="fas fa-eye"></i> View
                                         </a>
                                     </td>

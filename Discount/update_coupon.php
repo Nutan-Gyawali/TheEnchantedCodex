@@ -55,6 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['message_type'] = 'error';
     }
 
-    header("Location: viewcoupon.php");
+    header("Location: ../AdminPanel/index.php");
     exit();
 }

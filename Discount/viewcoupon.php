@@ -20,7 +20,7 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Coupons</title>
-    <link rel="stylesheet" href="coupon_styles.css">
+    <link rel="stylesheet" href="../Discount/coupon_styles.css">
 </head>
 
 <body>
@@ -69,7 +69,7 @@ $result = $conn->query($query);
                                 <?= htmlspecialchars(ucfirst($row['status'])) ?>
                             </td>
                             <td>
-                                <a href="editcoupon.php?id=<?= $row['id'] ?>" class="edit-btn">Edit</a>
+                                <a href="../Discount/editcoupon.php?id=<?= $row['id'] ?>" class="edit-btn">Edit</a>
                             </td>
                         </tr>
 
@@ -82,7 +82,7 @@ $result = $conn->query($query);
             </tbody>
         </table>
 
-        <a href="Discountfront.php" class="btn">Add New Coupon</a>
+        <a href="../Discount/Discountfront.php" class="btn">Add New Coupon</a>
     </div>
 </body>
 

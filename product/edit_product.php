@@ -28,7 +28,7 @@ try {
             $_POST['id']
         ]);
 
-        header("Location: viewprod.php");
+        header("Location: ../AdminPanel/index.php");
         exit();
     }
 

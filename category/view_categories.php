@@ -247,13 +247,14 @@ $categoryTree = getCategoryTree($conn);
     }
     $totalCategories = countCategories($categoryTree);
     echo "<div class='category-count'>Total Categories: $totalCategories</div>";
-    ?><a href="../category/category.php" class="add-category">Add New Category</a><?php
-                                                                                    if (empty($categoryTree)) {
-                                                                                        echo "<p>No categories found.</p>";
-                                                                                    } else {
-                                                                                        displayCategoryTree($categoryTree);
-                                                                                    }
-                                                                                    ?>
+    ?>
+    <a href="../category/category.php" class="add-category">Add New Category</a><?php
+                                                                                if (empty($categoryTree)) {
+                                                                                    echo "<p>No categories found.</p>";
+                                                                                } else {
+                                                                                    displayCategoryTree($categoryTree);
+                                                                                }
+                                                                                ?>
 </body>
 
 </html><?php
