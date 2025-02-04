@@ -50,7 +50,7 @@ try {
                         <th>Order ID</th>
                         <th>Total Amount</th>
                         <th>Shipping Fee</th>
-                        <th>Discount</th>
+                        <!-- <th>Discount</th> -->
                         <th>Grand Total</th>
                         <th>Status</th>
                         <th>Order Date</th>
@@ -62,9 +62,9 @@ try {
                         <tr>
                             <td>#<?php echo htmlspecialchars($order['id']); ?></td>
                             <td>Rs. <?php echo number_format($order['total_amount'], 2); ?></td>
-                            <td>Rs. <?php echo number_format($order['shipping_fee'], 2); ?></td>
-                            <td>Rs. <?php echo number_format($order['discount'], 2); ?></td>
-                            <td><strong>Rs. <?php echo number_format($order['grand_total'], 2); ?></strong></td>
+                            <td>Rs. <?php echo "50"; ?></td>
+                            <!-- <td>Rs. <?php echo number_format($order['discount'], 2); ?></td> -->
+                            <td><strong>Rs. <?php echo number_format($order['total_amount'], 2); ?></strong></td>
                             <td><span class="badge bg-primary"><?php echo htmlspecialchars($order['order_status']); ?></span></td>
                             <td><?php echo date("d M Y, H:i", strtotime($order['created_at'])); ?></td>
                             <td><a href="order_details.php?order_id=<?php echo htmlspecialchars($order['id']); ?>" class="btn btn-info btn-sm">View</a></td>

@@ -1,0 +1,107 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans:wght@400;600&display=swap');
+
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-right: 7px;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #ffffff;
+    padding: 5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Heading */
+.form-container h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #ff6f00;
+    margin-bottom: 1.5rem;
+}
+
+/* Labels */
+.form-container label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    margin-right: 5px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* Input Fields */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+    border-color: #ff6f00;
+    outline: none;
+}
+
+/* Submit Button */
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #ff6f00;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #e65c00;
+}
+
+/* Placeholder Text */
+.form-container input::placeholder {
+    color: #999;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-container h2 {
+        font-size: 1.75rem;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container input[type="submit"] {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}

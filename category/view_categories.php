@@ -9,7 +9,10 @@ $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+// if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+//     header("Location: ../AdminPanel/AdminLogin.html");
+//     exit();
+// }
 // Function to get all categories with their subcategories
 function getCategoryTree($conn, $parentId = null, $level = 0)
 {

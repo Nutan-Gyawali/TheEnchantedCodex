@@ -123,7 +123,7 @@ $conn = null;
                         }
                         alert('Product deleted successfully');
                     } else {
-                        throw new Error(data.error || 'Error deleting product');
+                        throw new Error(data.error || `Error deleting product${data}`);
                     }
                 })
                 .catch(error => {
