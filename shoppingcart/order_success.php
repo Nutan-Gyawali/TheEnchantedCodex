@@ -43,6 +43,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Success</title>
+    <link rel="stylesheet" href="success.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
@@ -51,7 +52,7 @@ try {
         <h2>Order Successful!</h2>
         <p>Your order has been placed successfully.</p>
         <h4>Order Details</h4>
-        <p><strong>Order ID:</strong> <?php echo htmlspecialchars($order['id']); ?></p>
+
         <p><strong>Total Amount:</strong> Rs. <?php echo number_format($order['total_amount'], 2); ?></p>
         <p><strong>Shipping Address:</strong> <?php echo htmlspecialchars($order['shipping_address']); ?></p>
         <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($order['payment_method']); ?></p>
@@ -63,7 +64,8 @@ try {
                 </li>
             <?php } ?>
         </ul>
-        <a href="index.php" class="btn btn-primary mt-3">Back to Home</a>
+        <a href="../Landing/explore.php" class="btn btn-primary mt-3">Back to Home</a>
+        <a href="orders.php" class="btn btn-primary mt-3">Order History</a>
     </div>
 </body>
 

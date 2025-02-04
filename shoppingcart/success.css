@@ -1,0 +1,80 @@
+/* General Styles */
+body {
+    background-color: #fff7e6;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    color: #ff7700;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Order Details */
+h4 {
+    color: #ff7700;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* List Group */
+.list-group-item {
+    border: none;
+    background: #fff3d4;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #ff7700 !important;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #cc5d00 !important;
+    transform: scale(1.05);
+}
+
+.btn-primary:active {
+    background-color: #aa4e00 !important;
+    transform: scale(0.98);
+}

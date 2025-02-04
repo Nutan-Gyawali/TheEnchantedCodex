@@ -161,8 +161,10 @@ $categories = getCategoriesForDropdown($conn);
             </div>
 
             <button type="submit" name="add_product" class="submit-btn">Add Product</button>
-            <button onclick="goBackOrRedirect()" class="submit-btn">Go Back</button>
+
         </form>
+        <button class="submit-btn" onclick="window.location.href='../AdminPanel/index.php'">Go Back</button>
+
     </div>
 
     <script>
@@ -178,13 +180,13 @@ $categories = getCategoriesForDropdown($conn);
             }
         }
 
-        function goBackOrRedirect() {
-            if (document.referrer) {
-                window.location.href = document.referrer; // Redirect to the previous page
-            } else {
-                window.location.href = '../AdminPanel/index.php'; // Fallback if no referrer
-            }
-        }
+        // function goBackOrRedirect() {
+        //     if (document.referrer) {
+        //         window.location.href = document.referrer; // Redirect to the previous page
+        //     } else {
+        //         window.location.href = '../AdminPanel/index.php'; // Fallback if no referrer
+        //     }
+        // }
     </script>
 </body>
 

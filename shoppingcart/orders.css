@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+    background-color: #fff7e6;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading */
+h2 {
+    color: #ff7700;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background-color: #ff7700;
+    color: white;
+}
+
+.table th {
+    text-align: center;
+    font-size: 16px;
+    padding: 12px;
+}
+
+.table td {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+/* Order Status Badge */
+.badge {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.badge.bg-primary {
+    background-color: #ff7700 !important;
+}
+
+/* Buttons */
+.btn-info {
+    background-color: #ff7700 !important;
+    border: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn-info:hover {
+    background-color: #cc5d00 !important;
+    transform: scale(1.05);
+}
+
+.btn-info:active {
+    background-color: #aa4e00 !important;
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
