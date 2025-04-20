@@ -13,12 +13,24 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT p.*, c.category_name 
-            FROM products p 
-            LEFT JOIN categories c ON p.category_id = c.id 
-            ORDER BY p.name";
+    $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
 
-    $stmt = $conn->prepare($sql);
+    if (!empty($searchTerm)) {
+        $sql = "SELECT p.*, c.category_name 
+                FROM products p 
+                LEFT JOIN categories c ON p.category_id = c.id 
+                WHERE p.name LIKE :search OR p.description LIKE :search 
+                ORDER BY p.name";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':search', '%' . $searchTerm . '%', PDO::PARAM_STR);
+    } else {
+        $sql = "SELECT p.*, c.category_name 
+                FROM products p 
+                LEFT JOIN categories c ON p.category_id = c.id 
+                ORDER BY p.name";
+        $stmt = $conn->prepare($sql);
+    }
+
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -35,10 +47,6 @@ try {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="logo.css" rel="stylesheet">
     <link href="explore.css" rel="stylesheet">
-
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -61,6 +69,21 @@ try {
             </button>
         </div>
     </nav>
+
+    <!-- Search Bar -->
+    <div class="search-container" style="text-align: center; margin: 20px;">
+        <form method="GET" action="">
+            <input type="text" name="search" placeholder="Search for products..."
+                value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>"
+                style="padding: 8px; width: 300px; border-radius: 5px; border: 1px solid #ccc;">
+            <button type="submit" style="padding: 8px 12px; border: none; background-color:rgb(231, 120, 8); color: white; border-radius: 5px; cursor: pointer;">
+                <i class="fa fa-search"></i> Search
+            </button>
+            <?php if (!empty($searchTerm)): ?>
+                <a href="index.php" style="margin-left: 10px; text-decoration: none; color: red;">Clear Search</a>
+            <?php endif; ?>
+        </form>
+    </div>
 
     <?php if ($error): ?>
         <div class="error"><?php echo htmlspecialchars($error); ?></div>
@@ -117,7 +140,7 @@ try {
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No products found.</p>
+            <p style="text-align:center;">No products found.</p>
         <?php endif; ?>
     </div>
 </body>
