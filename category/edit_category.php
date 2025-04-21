@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($stmt->execute()) {
-            header("Location: view_categories.php");
+            header("Location: ../AdminPanel/index.php");
             exit;
         } else {
             $error = "Error updating category: " . $conn->error;
@@ -105,7 +105,7 @@ $stmt->close();
 
         <div class="form-buttons">
             <button type="submit" class="btn-save">Save Changes</button>
-            <a href="view_categories.php" class="btn-cancel">Cancel</a>
+            <a href="../AdminPanel/index.php" class="btn-cancel">Cancel</a>
         </div>
     </form>
 </body>

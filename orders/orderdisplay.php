@@ -149,15 +149,15 @@ $orders = $order_stmt->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                         </thead>
                         <tbody>
+
+                            <button class="btn btn-sm mt-2" style="background-color: orange; color: white; padding: 8px 16px; border: none; border-radius: 4px;" onclick="location.href='../AdminPanel/index.php'">Go Home</button>
+
+                            <tr>
+                                <button class="btn btn-sm mt-2" style="background-color: orange; color: white; padding: 8px 16px; border: none; border-radius: 4px;" onclick="location.href='../orders/orderdisplay.php'">
+                                    Go to Update Page
+                                </button>
+                            </tr>
                             <?php foreach ($orders as $order) { ?>
-                                <button class="btn btn-sm mt-2" style="background-color: orange; color: white; padding: 8px 16px; border: none; border-radius: 4px;" onclick="location.href='../AdminPanel/index.php'">Go Home</button>
-
-                                <tr>
-                                    <button class="btn btn-sm mt-2" style="background-color: orange; color: white; padding: 8px 16px; border: none; border-radius: 4px;" onclick="location.href='../orders/orderdisplay.php'">
-                                        Go to Update Page
-                                    </button>
-                                </tr>
-
                                 <tr id="order-row-<?php echo htmlspecialchars($order['id']); ?>">
                                     <td>#<?php echo htmlspecialchars($order['id']); ?></td>
                                     <td><?php echo htmlspecialchars($order['username']); ?></td>

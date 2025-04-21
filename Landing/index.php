@@ -158,7 +158,7 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="shop.php">Shop</a></li>
+                    <li><a href="explore.php">Shop</a></li>
                     <li><a href="static/about.html">About</a></li>
                     <li><a href="static/contact.html">Contact</a></li>
                     <li><a href="static/FAQ.html">FAQ</a></li>

@@ -492,13 +492,16 @@ function getAllChildCategoryIds($categories, $parentId)
     <nav class="top-nav">
         <div class="logo-container">
             <div class="logo">
-                <a href="explore.php">
+                <a href="index.php">
                     <img src="logo.png" alt="EC Logo">
                 </a>
             </div>
             <h1>The Enchanted Codex</h1>
         </div>
-        <h1 class="nav-title">All Products</h1>
+        <a href="explore.php" class="nav-title">
+            <h1>All Products</h1>
+        </a>
+
         <div class="nav-buttons">
             <button class="nav-button" onclick="location.href='../wishlist/index.php'">
                 <i class="fa fa-heart"></i>
