@@ -106,7 +106,10 @@ try {
                     </select>
                 </div>
 
-                <button type="submit" name="update_product" class="submit-btn">Update Product</button>
+                <button type="submit" name="update_product" class="submit-btn" style="background-color: orange; color: white; border: none; padding: 10px 20px; border-radius: 5px;">
+                    Update Product
+                </button>
+
             </form>
         </div>
     </body>

@@ -492,7 +492,9 @@ function getAllChildCategoryIds($categories, $parentId)
     <nav class="top-nav">
         <div class="logo-container">
             <div class="logo">
-                <img src="logo.png" alt="EC Logo">
+                <a href="explore.php">
+                    <img src="logo.png" alt="EC Logo">
+                </a>
             </div>
             <h1>The Enchanted Codex</h1>
         </div>

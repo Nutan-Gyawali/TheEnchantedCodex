@@ -172,7 +172,7 @@
                     <li><a href="static/returnpolicy.html">Return Policy</a></li>
                     <li><a href="static/payment.html">Payment Options</a></li>
 
-                    <li><a href="static/orders.html">Order History</a>
+                    <li><a href="static/orders.php">Order History</a>
 
                 </ul>
             </div>
