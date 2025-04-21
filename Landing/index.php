@@ -8,7 +8,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <style>
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
 
+        .footer-section ul li {
+            margin: 6px 0;
+        }
+
+        .footer-section ul li a {
+            color: #e77808;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -74,7 +91,7 @@
         <h2>Featured Magical Items</h2>
         <div class="products-grid">
             <div class="product-card">
-                <img src="../books.jpeg" alt="Magical Item 1">
+                <img src="books.jpeg" alt="Magical Item 1">
                 <div class="product-info">
                     <h3>Books</h3>
                     <p>Rare books you will not find elsewhere.</p>
@@ -88,7 +105,7 @@
                 </div>
             </div>
             <div class="product-card">
-                <img src="../journal.jpeg" alt="Magical Item 2">
+                <img src="journall.jpeg" alt="Magical Item 2">
                 <div class="product-info">
                     <h3>Book Journals</h3>
                     <p>Keep track of all the books you've read</p>
@@ -102,7 +119,7 @@
                 </div>
             </div>
             <div class=" product-card">
-                <img src="../bookmarks.webp" alt="Magical Item 3">
+                <img src="bookmark.jpeg" alt="Magical Item 3">
                 <div class="product-info">
                     <h3>Bookmarks</h3>
                     <p>Find Prettiest Bookmarks</p>
@@ -141,19 +158,22 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li>Shop</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                    <li>FAQ</li>
+                    <li><a href="shop.php">Shop</a></li>
+                    <li><a href="static/about.html">About</a></li>
+                    <li><a href="static/contact.html">Contact</a></li>
+                    <li><a href="static/FAQ.html">FAQ</a></li>
                 </ul>
             </div>
+
             <div class="footer-section">
                 <h4>Customer Service</h4>
                 <ul>
-                    <li>Shipping Info</li>
-                    <li>Returns</li>
-                    <li>Order Status</li>
-                    <li>Payment Options</li>
+                    <li><a href="static/shipping.html">Shipping Information</a></li>
+                    <li><a href="static/returnpolicy.html">Return Policy</a></li>
+                    <li><a href="static/payment.html">Payment Options</a></li>
+
+                    <li><a href="static/orders.html">Order History</a>
+
                 </ul>
             </div>
             <div class="footer-section newsletter">

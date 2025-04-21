@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - The Enchanted Codex</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url('Bg.png');
+            /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(231, 120, 8, 0.95);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .home-btn {
+            background-color: white;
+            color: #e77808;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #ffe0c7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            /* Increased opacity */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(231, 120, 8, 0.2);
+        }
+
+
+        .highlight {
+            color: #e77808;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.85);
+            /* More opacity for each section */
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .section h2 {
+            color: #e77808;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 224, 199, 0.95);
+            color: #444;
+            position: sticky;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        @media (max-width: 600px) {
+            .home-btn {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.php">
+                <img src="../logo.png" alt="The Enchanted Codex Logo">
+            </a>
+            <h1>The Enchanted Codex</h1>
+        </div>
+        <!-- <a href="../index.php" class="home-btn"><i class="fas fa-home"></i> Home</a> -->
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Our Story</h2>
+            <p>
+                Welcome to <span class="highlight">The Enchanted Codex</span> — a haven for book lovers and dreamers
+                alike.
+                Founded in <span class="highlight">2025</span>, we began our journey with a single mission:
+                to bring magical stories, timeless classics, and unforgettable adventures into the hands of every
+                reader.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>What We Offer</h2>
+            <p>
+                Whether you're looking for your next fantasy obsession, a comforting romance, or a thought-provoking
+                nonfiction read,
+                our shelves are curated with care and passion. From bestselling novels to hidden indie gems,
+                <span class="highlight">The Enchanted Codex</span> celebrates the power of stories to enchant, empower,
+                and connect us.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Our Promise</h2>
+            <p>
+                We're more than just a book store. We're a growing community of readers, writers, and magic seekers.
+                Our team is dedicated to creating a cozy, inclusive space — both online and offline — where everyone
+                feels welcome to explore new worlds.
+            </p>
+        </div>
+        <div class="section">
+            <h2>Members</h2>
+            <p>
+                We are a family of three members running the page: <span class="highlight">Anu KC,</span>
+                <span class="highlight">Nutan Gyawali,</span> and <span class="highlight">Shreya Rajlawat.</span>
+            </p>
+        </div>
+
+
+        <div class="section">
+            <h2>Connect With Us</h2>
+            <p>
+                You can find us on <i class="fab fa-instagram"></i> @theenchantedcodex and <i class="fab fa-tiktok"></i>
+                @theenchantedcodex2,
+                where we share bookish vibes, reviews, and behind-the-scenes magic.
+                We can’t wait for you to join our story.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 The Enchanted Codex. All rights reserved.
+    </div>
+
+</body>
+
+</html>

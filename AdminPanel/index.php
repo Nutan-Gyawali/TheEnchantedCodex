@@ -1,10 +1,24 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../AdminPanel/AdminLogin.html");
+    exit();
+}
+$host = 'localhost';
+$dbname = 'ecommerce';
+$user = 'root';
+$password = '';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Page Layout</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="nav.css">
 </head>
 

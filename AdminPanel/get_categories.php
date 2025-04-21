@@ -1,5 +1,10 @@
 <?php
 header('Content-Type: application/json');
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../AdminPanel/AdminLogin.html");
+    exit();
+}
 
 // Connect to the database
 $host = 'localhost';

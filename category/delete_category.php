@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../AdminPanel/AdminLogin.html");
+    exit();
+}
 // delete_category.php
 session_start();
 $host = 'localhost';

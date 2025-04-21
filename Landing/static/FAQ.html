@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ - The Enchanted Codex</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url('Bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        header {
+            background-color: rgba(231, 120, 8, 0.95);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo a img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(231, 120, 8, 0.2);
+        }
+
+        .section h2 {
+            color: #e77808;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        details {
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #e77808;
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: bold;
+            font-size: 16px;
+            color: #e77808;
+        }
+
+        details[open] summary::after {
+            content: " ▲";
+            font-size: 12px;
+        }
+
+        summary::after {
+            content: " ▼";
+            font-size: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 224, 199, 0.95);
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="../index.php">
+                <img src="../logo.png" alt="The Enchanted Codex Logo">
+            </a>
+            <h1>The Enchanted Codex</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>What kind of books do you sell?</summary>
+                <p>We offer a curated selection of fantasy, romance, mystery, young adult, non-fiction, and indie reads
+                    that spark imagination and inspiration.</p>
+            </details>
+
+            <details>
+                <summary>How can I place an order?</summary>
+                <p>Simply browse our collection, add items to your cart, and proceed to checkout. You’ll receive an
+                    email confirmation right after your purchase.</p>
+            </details>
+
+            <details>
+                <summary>Do you ship internationally?</summary>
+                <p>Currently, we ship within Nepal. However, we are working on expanding to international shipping soon!
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I return or exchange a book?</summary>
+                <p>Yes! Returns and exchanges are accepted within 7 days of delivery. Please ensure the book is unused
+                    and in its original condition.</p>
+            </details>
+
+            <details>
+                <summary>How do I contact customer support?</summary>
+                <p>You can reach out to us via our <a href="contact.html"
+                        style="color:#e77808; text-decoration: underline;">Contact Page</a> or through our social media
+                    handles listed there. You can also whatsapp us on +977-9861815910
+                </p>
+            </details>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 The Enchanted Codex. All rights reserved.
+    </div>
+
+</body>
+
+</html>
