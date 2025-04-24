@@ -1,0 +1,60 @@
+/* order_details.css */
+
+body {
+    background-image: url('../assets/bg.jpg');
+    /* Replace with your actual background path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top: 60px;
+}
+
+h2 {
+    color: #ff7a00;
+    font-weight: bold;
+}
+
+.table thead {
+    background-color: #ff7a00;
+    color: white;
+}
+
+.table tbody tr td {
+    vertical-align: middle;
+}
+
+.btn-secondary {
+    background-color: #ff7a00;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #e86e00;
+}
+
+.product-image {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Logo section */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.logo {
+    height: 50px;
+}
