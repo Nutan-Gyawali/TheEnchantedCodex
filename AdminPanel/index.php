@@ -22,6 +22,7 @@ $password = '';
     <link rel="stylesheet" href="nav.css">
 </head>
 
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -31,6 +32,7 @@ $password = '';
                 <h1 class="brand-name">The Enchanted Codex</h1>
             </a>
         </div>
+
     </nav>
 
     <!-- Sidebar -->

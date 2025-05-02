@@ -103,7 +103,7 @@ try {
     <?php } else { ?>
         <p>No items found for this order.</p>
     <?php } ?>
-    <a href="my_orders.php" class="btn btn-secondary mt-3">Back to Orders</a>
+    <a href="orders.php" class="btn btn-secondary mt-3">Back to Orders</a>
 </body>
 
 </html>

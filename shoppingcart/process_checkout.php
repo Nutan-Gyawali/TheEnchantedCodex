@@ -14,6 +14,12 @@ try {
         header("Location: ../login/login.html");
         exit();
     }
+    // --- After session and DB setup ---
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../login/login.html");
+        exit();
+    }
     $user_id = $_SESSION['user_id'];
 
     // Retrieve form data
@@ -22,7 +28,6 @@ try {
     $selected_items = explode(',', $_POST['selected_items']);
     $total_amount = $_POST['total_amount'];
 
-    // Validate selected items
     if (empty($selected_items)) {
         die("No items selected.");
     }
@@ -35,31 +40,48 @@ try {
         die("User not found.");
     }
 
-    // Create order in database
+    // Create order
     $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, shipping_address, payment_method, order_status, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
     $order_status = ($payment_method == 'Khalti') ? 'Pending' : 'Processing';
     $stmt->execute([$user_id, $total_amount, $shipping_address, $payment_method, $order_status]);
     $order_id = $conn->lastInsertId();
 
-    // Insert order items
-    $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+    // Prepare reusable statements
+    $order_item_stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
+    $stock_update_stmt = $conn->prepare("UPDATE products SET quantity = quantity - ? WHERE id = ?");
+    $stock_check_stmt = $conn->prepare("SELECT quantity FROM products WHERE id = ?");
+    $product_price_stmt = $conn->prepare("SELECT price FROM products WHERE id = ?");
+    $cart_quantity_stmt = $conn->prepare("SELECT quantity FROM shopping_cart WHERE user_id = ? AND product_id = ?");
+
     foreach ($selected_items as $product_id) {
-        $product_stmt = $conn->prepare("SELECT price FROM products WHERE id = ?");
-        $product_stmt->execute([$product_id]);
-        $product = $product_stmt->fetch(PDO::FETCH_ASSOC);
+        // Get product price
+        $product_price_stmt->execute([$product_id]);
+        $product = $product_price_stmt->fetch(PDO::FETCH_ASSOC);
         $price = $product['price'];
 
-        $quantity_stmt = $conn->prepare("SELECT quantity FROM shopping_cart WHERE user_id = ? AND product_id = ?");
-        $quantity_stmt->execute([$user_id, $product_id]);
-        $quantity = $quantity_stmt->fetchColumn();
+        // Get quantity from cart
+        $cart_quantity_stmt->execute([$user_id, $product_id]);
+        $quantity = $cart_quantity_stmt->fetchColumn();
 
-        $stmt->execute([$order_id, $product_id, $quantity, $price]);
+        // Check stock
+        $stock_check_stmt->execute([$product_id]);
+        $available_stock = $stock_check_stmt->fetchColumn();
+        if ($quantity > $available_stock) {
+            die("Insufficient stock for product ID $product_id. Available: $available_stock, Requested: $quantity");
+        }
+
+        // Insert order item
+        $order_item_stmt->execute([$order_id, $product_id, $quantity, $price]);
+
+        // Update stock
+        $stock_update_stmt->execute([$quantity, $product_id]);
     }
 
-    // Clear cart items
+    // Clear cart
     $placeholders = implode(',', array_fill(0, count($selected_items), '?'));
     $delete_stmt = $conn->prepare("DELETE FROM shopping_cart WHERE user_id = ? AND product_id IN ($placeholders)");
     $delete_stmt->execute(array_merge([$user_id], $selected_items));
+
 
     // Handle Khalti payment
     if ($payment_method == 'Khalti') {

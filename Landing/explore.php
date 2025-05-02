@@ -511,6 +511,11 @@ function getAllChildCategoryIds($categories, $parentId)
                 <i class="fa fa-shopping-cart"></i>
                 Cart
             </button>
+            <button class="nav-button" onclick="location.href='./logout.php'">
+                <i class="fa fa-sign-out"></i>
+                Logout
+            </button>
+        </div>
         </div>
     </nav>
     <div class="container">
@@ -558,7 +563,7 @@ function getAllChildCategoryIds($categories, $parentId)
                     </select>
                     <button type="submit"><i class="fa fa-search"></i></button>
                     <?php if (!empty($searchTerm)): ?>
-                        <a href="index.php" class="clear-search">Clear Search</a>
+                        <a href="explore.php" class="clear-search">Clear Search</a>
                     <?php endif; ?>
                 </form>
             </div>
@@ -596,15 +601,16 @@ function getAllChildCategoryIds($categories, $parentId)
                                 <?php if ($product['quantity'] < 1): ?>
                                     Out of Stock
                                 <?php else: ?>
-                                    In Stock: <?php echo $product['quantity']; ?> units
+                                    <!-- In Stock: <?php echo $product['quantity']; ?> units -->
                                 <?php endif; ?>
                             </p>
 
                             <div class="action-buttons">
                                 <form method="POST" action="../shoppingcart/addtocart.php" style="display: inline;">
                                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                    <button name="cart" type="submit" style="background: none; border: none; cursor: pointer;">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <button name="cart" type="submit" style="background: none; border: none; cursor: <?php echo $product['quantity'] < 1 ? 'not-allowed' : 'pointer'; ?>;"
+                                        <?php echo $product['quantity'] < 1 ? 'disabled' : ''; ?>>
+                                        <i class="fa fa-shopping-cart" aria-hidden="true" style="color: <?php echo $product['quantity'] < 1 ? '#ccc' : '#ff8c00'; ?>;"></i>
                                     </button>
                                 </form>
 
